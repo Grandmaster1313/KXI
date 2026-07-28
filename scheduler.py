@@ -4,18 +4,19 @@ import time
 from pathlib import Path
 from datetime import datetime
 
-# ----------------------------------------------------
+# -------------------------------------------------------
 # KXI Scheduler
-# ----------------------------------------------------
+# -------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent
+
 DASHBOARD_SCRIPT = ROOT / "gold_dashboard.py"
+AUTO_PUBLISH_SCRIPT = ROOT / "auto_publish.py"
 
 print("=" * 60)
 print("KXI HEARTBEAT MONITOR STARTED")
 print("=" * 60)
 print(f"Scheduler Folder : {ROOT}")
-print(f"Dashboard Script : {DASHBOARD_SCRIPT}")
 print()
 
 while True:
@@ -29,6 +30,9 @@ while True:
 
     try:
 
+        # ----------------------------
+        # Generate dashboard
+        # ----------------------------
         result = subprocess.run(
             [sys.executable, str(DASHBOARD_SCRIPT)],
             cwd=str(ROOT),
@@ -37,14 +41,9 @@ while True:
             text=True
         )
 
-        elapsed = time.time() - start
-
         if result.returncode == 0:
-
-            print(f"✓ Dashboard updated successfully ({elapsed:.2f} sec)")
-
+            print("✓ Dashboard updated successfully")
         else:
-
             print(f"✗ Dashboard failed (Exit Code {result.returncode})")
 
         if result.stdout.strip():
@@ -55,20 +54,37 @@ while True:
             print("\n----- Dashboard Errors -----")
             print(result.stderr.strip())
 
-    except subprocess.TimeoutExpired:
+        # ----------------------------
+        # Publish to GitHub
+        # ----------------------------
+        publish = subprocess.run(
+            [sys.executable, str(AUTO_PUBLISH_SCRIPT)],
+            cwd=str(ROOT),
+            timeout=60,
+            capture_output=True,
+            text=True
+        )
 
-        print("✗ ERROR: Dashboard update timed out after 60 seconds.")
+        if publish.stdout.strip():
+            print("\n----- Git Publish -----")
+            print(publish.stdout.strip())
+
+        if publish.stderr.strip():
+            print("\n----- Git Publish Errors -----")
+            print(publish.stderr.strip())
+
+        elapsed = time.time() - start
+
+        print()
+        print(f"Completed in {elapsed:.2f} seconds")
 
     except Exception as e:
-
-        print(f"✗ ERROR: {e}")
-
-    next_run = datetime.now().strftime("%H:%M:%S CST")
+        print()
+        print("Scheduler Error:")
+        print(e)
 
     print()
-    print("Heartbeat : OK")
-    print(f"Next update : {next_run} + 30 sec")
-    print("=" * 60)
+    print("Waiting 30 seconds...")
     print()
 
     time.sleep(30)
