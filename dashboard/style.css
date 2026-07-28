@@ -1,0 +1,104 @@
+body{
+
+    background:#000000;
+
+    color:white;
+
+    font-family:Consolas, monospace;
+
+    margin:60px;
+
+}
+
+.container{
+
+    width:700px;
+
+}
+
+h1{
+
+    font-size:30px;
+
+    font-weight:normal;
+
+    margin-bottom:25px;
+
+}
+
+h2{
+
+    font-size:22px;
+
+    font-weight:normal;
+
+    margin-top:35px;
+
+}
+
+h3{
+
+    font-size:20px;
+
+    font-weight:normal;
+
+    margin-top:25px;
+
+}
+
+hr{
+
+    border:none;
+
+    border-top:1px solid white;
+
+    margin-top:25px;
+
+    margin-bottom:25px;
+
+}
+
+p{
+
+    font-size:20px;
+
+}
+.market-grid{
+
+    display:grid;
+
+    grid-template-columns:180px 180px 180px;
+
+    row-gap:20px;
+
+    font-size:20px;
+
+    margin-top:20px;
+
+}
+.summary-grid{
+
+    display:grid;
+
+    grid-template-columns:220px auto;
+
+    row-gap:15px;
+
+    font-size:20px;
+
+    margin-top:25px;
+
+    margin-bottom:25px;
+
+}
+.footer{
+
+    margin-top:40px;
+
+    font-size:15px;
+
+    color:white;
+
+    opacity:.75;
+
+}
