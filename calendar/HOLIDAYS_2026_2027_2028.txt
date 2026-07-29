@@ -1,0 +1,11 @@
+Holiday				2026				2027				2028
+New Year’s Day,			January 1			Friday, January 1		—*
+Martin Luther King, Jr. Day	Monday, January 19		Monday, January 18		Monday, January 17
+Washington's Birthday		Monday, February 16		Monday, February 15		Monday, February 21
+Good Friday			Friday, April 3			Friday, March 26		Friday, April 14
+Memorial Day			Monday, May 25			Monday, May 31			Monday, May 29
+Juneteenth 			Friday, June 19			Friday, June 18 		Monday, June 19
+Independence Day		Friday, July 3 			Monday, July 5 			Tuesday, July 4
+Labor Day			Monday, September 7		Monday, September 6		Monday, September 4
+Thanksgiving Day		Thursday, November 26		Thursday, November 25		Thursday, November 23
+Christmas Day			Friday, December 25		Friday, December 24 		Monday, December 25
