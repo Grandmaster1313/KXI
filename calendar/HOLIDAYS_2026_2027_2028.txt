@@ -1,11 +1,31 @@
-Holiday				2026				2027				2028
-New Year’s Day,			January 1			Friday, January 1		—*
-Martin Luther King, Jr. Day	Monday, January 19		Monday, January 18		Monday, January 17
-Washington's Birthday		Monday, February 16		Monday, February 15		Monday, February 21
-Good Friday			Friday, April 3			Friday, March 26		Friday, April 14
-Memorial Day			Monday, May 25			Monday, May 31			Monday, May 29
-Juneteenth 			Friday, June 19			Friday, June 18 		Monday, June 19
-Independence Day		Friday, July 3 			Monday, July 5 			Tuesday, July 4
-Labor Day			Monday, September 7		Monday, September 6		Monday, September 4
-Thanksgiving Day		Thursday, November 26		Thursday, November 25		Thursday, November 23
-Christmas Day			Friday, December 25		Friday, December 24 		Monday, December 25
+2026-01-01|NEW YEAR'S DAY
+2026-01-19|MARTIN LUTHER KING JR. DAY
+2026-02-16|WASHINGTON'S BIRTHDAY
+2026-04-03|GOOD FRIDAY
+2026-05-25|MEMORIAL DAY
+2026-06-19|JUNETEENTH
+2026-07-03|INDEPENDENCE DAY (OBSERVED)
+2026-09-07|LABOR DAY
+2026-11-26|THANKSGIVING DAY
+2026-12-25|CHRISTMAS DAY
+
+2027-01-01|NEW YEAR'S DAY
+2027-01-18|MARTIN LUTHER KING JR. DAY
+2027-02-15|WASHINGTON'S BIRTHDAY
+2027-03-26|GOOD FRIDAY
+2027-05-31|MEMORIAL DAY
+2027-06-18|JUNETEENTH (OBSERVED)
+2027-07-05|INDEPENDENCE DAY (OBSERVED)
+2027-09-06|LABOR DAY
+2027-11-25|THANKSGIVING DAY
+2027-12-24|CHRISTMAS DAY (OBSERVED)
+
+2028-01-17|MARTIN LUTHER KING JR. DAY
+2028-02-21|WASHINGTON'S BIRTHDAY
+2028-04-14|GOOD FRIDAY
+2028-05-29|MEMORIAL DAY
+2028-06-19|JUNETEENTH
+2028-07-04|INDEPENDENCE DAY
+2028-09-04|LABOR DAY
+2028-11-23|THANKSGIVING DAY
+2028-12-25|CHRISTMAS DAY

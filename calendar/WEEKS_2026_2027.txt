@@ -1,99 +1,80 @@
-2026
-Jul 6–10                     🟡 Macro Week                    Medium
-Jul 13–17                    🔴 Major Macro Week             Low
-Jul 20–24                    🟢 Typical                      High
-Jul 27–31                    ⚫ FOMC + GDP + Contract Roll   Very Low
-
-Aug 3–7                      🟡 NFP Week                     Medium
-Aug 10–14                    🟡 CPI/PPI Week                Medium
-Aug 17–21                    🟢 Typical                      High
-Aug 24–28                    🟡 PCE/GDP Week                Medium
-Aug 31–Sep 4                 🟡 NFP Week                     Medium
-
-Sep 7–11                     🟡 CPI Week                     Medium
-Sep 14–18                    🔴 FOMC Week                   Low
-Sep 21–25                    🟡 Contract Roll               Medium-Low
-Sep 28–Oct 2                 🟡 GDP/PCE Week                Medium
-
-Oct 5–9                      🟡 NFP Week                     Medium
-Oct 12–16                    🟡 CPI/PPI Week                Medium
-Oct 19–23                    🟢 Typical                      High
-Oct 26–30                    🔴 FOMC + GDP                 Low
-
-Nov 2–6                      🟡 NFP Week                     Medium
-Nov 9–13                     🟡 CPI Week                     Medium
-Nov 16–20                    🟡 Contract Roll               Medium-Low
-Nov 23–27                    🔴 Thanksgiving + PCE         Low
-Nov 30–Dec 4                 🟡 NFP Week                     Medium
-
-Dec 7–11                     ⚫ FOMC + CPI                  Very Low
-Dec 14–18                    🟢 Typical                      High
-Dec 21–25                    🔴 Christmas Week             Low
-Dec 28–Jan 1                 🔴 Year-End Week              Low
-
-20027
-Jan 4–8                      🟡 NFP Week                     Medium
-Jan 11–15                    🟡 CPI/PPI Week                Medium
-Jan 18–22                    🟢 Typical                      High
-Jan 25–29                    🔴 FOMC Week                   Low
-
-Feb 1–5                      🟡 NFP Week                     Medium
-Feb 8–12                     🟡 CPI Week                     Medium
-Feb 15–19                    🟢 Typical                      High
-Feb 22–26                    🟢 Typical                      High
-
-Mar 1–5                      🟡 NFP Week                     Medium
-Mar 8–12                     🟡 CPI Week                     Medium
-Mar 15–19                    🔴 FOMC Week                   Low
-Mar 22–26                    🟡 Contract Roll               Medium-Low
-Mar 29–Apr 2                 🟡 GDP/PCE Week                Medium
-
-Apr 5–9                      🟡 NFP Week                     Medium
-Apr 12–16                    🟡 CPI/PPI Week                Medium
-Apr 19–23                    🟢 Typical                      High
-Apr 26–30                    🔴 FOMC Week                   Low
-
-May 3–7                      🟢 Typical                      High
-May 10–14                    🟢 Typical                      High
-May 17–21                    🟢 Typical                      High
-May 24–28                    🟢 Typical                      High
-May 31–Jun 4                 🟡 NFP Week                     Medium
-
-Jun 7–11                     ⚫ FOMC + CPI                  Very Low
-Jun 14–18                    🟡 Contract Roll               Medium-Low
-Jun 21–25                    🟢 Typical                      High
-Jun 28–Jul 2                 🟢 Typical                      High
-
-Jul 5–9                      🟡 NFP Week                     Medium
-Jul 12–16                    🟡 CPI/PPI Week                Medium
-Jul 19–23                    🟢 Typical                      High
-Jul 26–30                    ⚫ FOMC + Contract Roll        Very Low
-
-Aug 2–6                      🟡 NFP Week                     Medium
-Aug 9–13                     🟡 CPI Week                     Medium
-Aug 16–20                    🟢 Typical                      High
-Aug 23–27                    🟢 Typical                      High
-Aug 30–Sep 3                 🟡 NFP Week                     Medium
-
-Sep 6–10                     🟡 CPI Week                     Medium
-Sep 13–17                    🔴 FOMC Week                   Low
-Sep 20–24                    🟡 Contract Roll               Medium-Low
-Sep 27–Oct 1                 🟡 GDP/PCE Week                Medium
-
-Oct 4–8                      🟡 NFP Week                     Medium
-Oct 11–15                    🟡 CPI/PPI Week                Medium
-Oct 18–22                    🟢 Typical                      High
-Oct 25–29                    🔴 FOMC Week                   Low
-
-Nov 1–5                      🟡 NFP Week                     Medium
-Nov 8–12                     🟡 CPI Week                     Medium
-Nov 15–19                    🟡 Contract Roll               Medium-Low
-Nov 22–26                    🔴 Thanksgiving Week          Low
-Nov 29–Dec 3                 🟡 NFP Week                     Medium
-
-Dec 6–10                     ⚫ FOMC + CPI                  Very Low
-Dec 13–17                    🟢 Typical                      High
-Dec 20–24                    🔴 Christmas Week             Low
-Dec 27–31                    🔴 Year-End Week              Low
+2026-07-06|2026-07-10|MEDIUM|MACRO WEEK
+2026-07-13|2026-07-17|LOW|MAJOR MACRO WEEK
+2026-07-20|2026-07-24|HIGH|TYPICAL
+2026-07-27|2026-07-31|VERY LOW|FOMC + GDP + CONTRACT ROLL
+2026-08-03|2026-08-07|MEDIUM|NFP WEEK
+2026-08-10|2026-08-14|MEDIUM|CPI/PPI WEEK
+2026-08-17|2026-08-21|HIGH|TYPICAL
+2026-08-24|2026-08-28|MEDIUM|PCE/GDP WEEK
+2026-08-31|2026-09-04|MEDIUM|NFP WEEK
+2026-09-07|2026-09-11|MEDIUM|CPI WEEK
+2026-09-14|2026-09-18|LOW|FOMC WEEK
+2026-09-21|2026-09-25|MEDIUM-LOW|CONTRACT ROLL
+2026-09-28|2026-10-02|MEDIUM|GDP/PCE WEEK
+2026-10-05|2026-10-09|MEDIUM|NFP WEEK
+2026-10-12|2026-10-16|MEDIUM|CPI/PPI WEEK
+2026-10-19|2026-10-23|HIGH|TYPICAL
+2026-10-26|2026-10-30|LOW|FOMC + GDP
+2026-11-02|2026-11-06|MEDIUM|NFP WEEK
+2026-11-09|2026-11-13|MEDIUM|CPI WEEK
+2026-11-16|2026-11-20|MEDIUM-LOW|CONTRACT ROLL
+2026-11-23|2026-11-27|LOW|THANKSGIVING + PCE
+2026-11-30|2026-12-04|MEDIUM|NFP WEEK
+2026-12-07|2026-12-11|VERY LOW|FOMC + CPI
+2026-12-14|2026-12-18|HIGH|TYPICAL
+2026-12-21|2026-12-25|LOW|CHRISTMAS WEEK
+2026-12-28|2027-01-01|LOW|YEAR-END WEEK
+2027-01-04|2027-01-08|MEDIUM|NFP WEEK
+2027-01-11|2027-01-15|MEDIUM|CPI/PPI WEEK
+2027-01-18|2027-01-22|HIGH|TYPICAL
+2027-01-25|2027-01-29|LOW|FOMC WEEK
+2027-02-01|2027-02-05|MEDIUM|NFP WEEK
+2027-02-08|2027-02-12|MEDIUM|CPI WEEK
+2027-02-15|2027-02-19|HIGH|TYPICAL
+2027-02-22|2027-02-26|HIGH|TYPICAL
+2027-03-01|2027-03-05|MEDIUM|NFP WEEK
+2027-03-08|2027-03-12|MEDIUM|CPI WEEK
+2027-03-15|2027-03-19|LOW|FOMC WEEK
+2027-03-22|2027-03-26|MEDIUM-LOW|CONTRACT ROLL
+2027-03-29|2027-04-02|MEDIUM|GDP/PCE WEEK
+2027-04-05|2027-04-09|MEDIUM|NFP WEEK
+2027-04-12|2027-04-16|MEDIUM|CPI/PPI WEEK
+2027-04-19|2027-04-23|HIGH|TYPICAL
+2027-04-26|2027-04-30|LOW|FOMC WEEK
+2027-05-03|2027-05-07|HIGH|TYPICAL
+2027-05-10|2027-05-14|HIGH|TYPICAL
+2027-05-17|2027-05-21|HIGH|TYPICAL
+2027-05-24|2027-05-28|HIGH|TYPICAL
+2027-05-31|2027-06-04|MEDIUM|NFP WEEK
+2027-06-07|2027-06-11|VERY LOW|FOMC + CPI
+2027-06-14|2027-06-18|MEDIUM-LOW|CONTRACT ROLL
+2027-06-21|2027-06-25|HIGH|TYPICAL
+2027-06-28|2027-07-02|HIGH|TYPICAL
+2027-07-05|2027-07-09|MEDIUM|NFP WEEK
+2027-07-12|2027-07-16|MEDIUM|CPI/PPI WEEK
+2027-07-19|2027-07-23|HIGH|TYPICAL
+2027-07-26|2027-07-30|VERY LOW|FOMC + CONTRACT ROLL
+2027-08-02|2027-08-06|MEDIUM|NFP WEEK
+2027-08-09|2027-08-13|MEDIUM|CPI WEEK
+2027-08-16|2027-08-20|HIGH|TYPICAL
+2027-08-23|2027-08-27|HIGH|TYPICAL
+2027-08-30|2027-09-03|MEDIUM|NFP WEEK
+2027-09-06|2027-09-10|MEDIUM|CPI WEEK
+2027-09-13|2027-09-17|LOW|FOMC WEEK
+2027-09-20|2027-09-24|MEDIUM-LOW|CONTRACT ROLL
+2027-09-27|2027-10-01|MEDIUM|GDP/PCE WEEK
+2027-10-04|2027-10-08|MEDIUM|NFP WEEK
+2027-10-11|2027-10-15|MEDIUM|CPI/PPI WEEK
+2027-10-18|2027-10-22|HIGH|TYPICAL
+2027-10-25|2027-10-29|LOW|FOMC WEEK
+2027-11-01|2027-11-05|MEDIUM|NFP WEEK
+2027-11-08|2027-11-12|MEDIUM|CPI WEEK
+2027-11-15|2027-11-19|MEDIUM-LOW|CONTRACT ROLL
+2027-11-22|2027-11-26|LOW|THANKSGIVING WEEK
+2027-11-29|2027-12-03|MEDIUM|NFP WEEK
+2027-12-06|2027-12-10|VERY LOW|FOMC + CPI
+2027-12-13|2027-12-17|HIGH|TYPICAL
+2027-12-20|2027-12-24|LOW|CHRISTMAS WEEK
+2027-12-27|2027-12-31|LOW|YEAR-END WEEK
 
 
