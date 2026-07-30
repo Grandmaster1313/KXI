@@ -28,36 +28,24 @@ current_time = datetime.now().strftime("%H:%M:%S CST")
 
 last_update = datetime.now().strftime("%Y-%m-%d %H:%M CST")
 
-def arrow(value):
+def bias_text(bias):
 
-    if value > 0:
-        return "^"
+    text = bias.lower()
 
-    elif value < 0:
-        return "v"
-
-
-    else:
-        return "-"
-
-    def bias_text(bias):
-
-    bias = bias.lower()
-
-    if bias == "very bullish":
+    if text == "very bullish":
         return "<i>Very Bullish ^ ^ ^</i>"
 
-    elif bias == "bullish":
+    elif text == "bullish":
         return "<i>Bullish ^</i>"
 
-    elif bias == "bearish":
+    elif text == "bearish":
         return "v Bearish"
 
-    elif bias == "very bearish":
+    elif text == "very bearish":
         return "v v v Very Bearish"
 
     else:
-        return bias.title()
+        return bias
     
 print("=" * 50)
 print("        GOLD COMMAND CENTER V1")
