@@ -62,8 +62,6 @@ print()
 
 print("=" * 50)
 
-python scheduler.py
- calendar_engine import get_calendar_status
 
 trading_month, trading_week, session_status = get_calendar_status()
 
