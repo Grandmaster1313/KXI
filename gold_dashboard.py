@@ -106,7 +106,7 @@ html = f"""
 
 MARKET CONDITIONS
 
-Macro Bias .............. {bias}
+Macro Bias .............. {bias_text(bias)}
 Confidence .............. {confidence}%
 
 Trading Month ........... {trading_month}
