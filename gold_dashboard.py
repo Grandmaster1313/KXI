@@ -2,6 +2,7 @@ from macro_engine import get_macro_bias
 from dashboard_writer import write_dashboard
 from yahoo_data import get_market_data, get_dxy_data
 from datetime import datetime
+from calendar_engine import get_calendar_status
 
 gold = get_market_data("GC=F")
 dxy = get_dxy_data()
