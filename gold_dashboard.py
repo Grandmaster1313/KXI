@@ -28,6 +28,17 @@ current_time = datetime.now().strftime("%H:%M:%S CST")
 
 last_update = datetime.now().strftime("%Y-%m-%d %H:%M CST")
 
+def arrow(value):
+
+    if value > 0:
+        return "^"
+
+    elif value < 0:
+        return "v"
+
+    else:
+        return "-"
+    
 def bias_text(bias):
 
     text = bias.lower()
