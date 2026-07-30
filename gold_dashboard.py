@@ -39,6 +39,26 @@ def arrow(value):
 
     else:
         return "-"
+
+    def bias_text(bias):
+
+    bias = bias.lower()
+
+    if bias == "very bullish":
+        return "<i>Very Bullish ^ ^ ^</i>"
+
+    elif bias == "bullish":
+        return "<i>Bullish ^</i>"
+
+    elif bias == "bearish":
+        return "v Bearish"
+
+    elif bias == "very bearish":
+        return "v v v Very Bearish"
+
+    else:
+        return bias.title()
+    
 print("=" * 50)
 print("        GOLD COMMAND CENTER V1")
 print("=" * 50)
@@ -54,7 +74,8 @@ print()
 
 print("=" * 50)
 
-from calendar_engine import get_calendar_status
+python scheduler.py
+ calendar_engine import get_calendar_status
 
 trading_month, trading_week, session_status = get_calendar_status()
 
