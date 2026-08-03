@@ -165,10 +165,6 @@ def load_blackout():
 
     return start, end
 
-
-
-
-
 def load_cny():
 
     file = CALENDAR_DIR / "CHINESENEWYEAR_2027.txt"
@@ -176,7 +172,15 @@ def load_cny():
     with open(file, "r", encoding="utf-8") as f:
         line = f.readline().strip()
 
-    start_str, end_str = line.split("|")
+    if not line:
+        raise ValueError("CHINESENEWYEAR_2027.txt is empty")
+
+    if "|" not in line:
+        raise ValueError(
+            "CHINESENEWYEAR_2027.txt must contain: YYYY-MM-DD|YYYY-MM-DD"
+        )
+
+    start_str, end_str = line.split("|", 1)
 
     start = datetime.strptime(start_str, "%Y-%m-%d").date()
     end = datetime.strptime(end_str, "%Y-%m-%d").date()
