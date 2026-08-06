@@ -3,6 +3,7 @@ def get_macro_bias(gold, dxy, us10y, wti, vix):
     # -------------------------
     # Prevent crashes if any feed is unavailable
     # -------------------------
+
     if gold is None:
         gold = {"change": 0}
 
@@ -20,41 +21,82 @@ def get_macro_bias(gold, dxy, us10y, wti, vix):
 
     score = 0
 
+    print()
+    print("=" * 50)
+    print("MACRO BIAS DIAGNOSTICS")
+    print("=" * 50)
+
     # -------------------------
     # DXY (30%)
     # -------------------------
+
     if dxy["change"] > 0:
-        score -= 30
+        dxy_score = -30
     else:
-        score += 30
+        dxy_score = 30
+
+    score += dxy_score
+
+    print(
+        f"DXY    Change: {dxy['change']:>7.2f}   "
+        f"Contribution: {dxy_score:+d}"
+    )
 
     # -------------------------
     # US10Y (20%)
     # -------------------------
+
     if us10y["change"] > 0:
-        score -= 20
+        us10y_score = -20
     else:
-        score += 20
+        us10y_score = 20
+
+    score += us10y_score
+
+    print(
+        f"US10Y  Change: {us10y['change']:>7.2f}   "
+        f"Contribution: {us10y_score:+d}"
+    )
 
     # -------------------------
-    # WTI (40%)
+    # WTI (10%)   <-- APPROVED CHANGE
     # -------------------------
+
     if wti["change"] > 0:
-        score += 40
+        wti_score = 10
     else:
-        score -= 40
+        wti_score = -10
+
+    score += wti_score
+
+    print(
+        f"WTI    Change: {wti['change']:>7.2f}   "
+        f"Contribution: {wti_score:+d}"
+    )
 
     # -------------------------
     # VIX (10%)
     # -------------------------
+
     if vix["change"] > 0:
-        score += 10
+        vix_score = 10
     else:
-        score -= 10
+        vix_score = -10
+
+    score += vix_score
+
+    print(
+        f"VIX    Change: {vix['change']:>7.2f}   "
+        f"Contribution: {vix_score:+d}"
+    )
+
+    print("-" * 50)
+    print(f"TOTAL SCORE : {score:+d}")
 
     # -------------------------
     # Final Classification
     # -------------------------
+
     if score >= 60:
         bias = "Strong Bullish"
 
@@ -71,5 +113,10 @@ def get_macro_bias(gold, dxy, us10y, wti, vix):
         bias = "Neutral"
 
     confidence = abs(score)
+
+    print(f"BIAS        : {bias}")
+    print(f"CONFIDENCE  : {confidence}%")
+    print("=" * 50)
+    print()
 
     return bias, confidence
