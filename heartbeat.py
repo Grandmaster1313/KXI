@@ -2,7 +2,7 @@ import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
-
+from hashlib import sha256
 
 # ============================================================
 # KXI HEARTBEAT CONFIGURATION
@@ -182,7 +182,17 @@ try:
 
             if result.returncode == 0:
 
-                current_signature = result.stdout
+                html_file = Path("dashboard/index.html")
+
+                if html_file.exists():
+
+                    current_signature = sha256(
+                        html_file.read_bytes()
+                    ).hexdigest()
+
+                else:
+
+                    current_signature = ""
 
                 if current_signature != last_signature:
 
@@ -191,14 +201,10 @@ try:
                     last_signature = current_signature
 
                     print(
-                        f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S CST')}] Dashboard updated."
+                        f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S CST')}] Dashboard HTML changed."
                     )
 
-                    write_log("UPDATED")
-
-                    # ===========================================
-                    # NEW: Publish automatically to GitHub
-                    # ===========================================
+                    write_log("HTML UPDATED")
 
                     auto_publish()
 
@@ -207,10 +213,10 @@ try:
                     no_changes += 1
 
                     print(
-                        f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S CST')}] No changes."
+                        f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S CST')}] HTML unchanged."
                     )
 
-                    write_log("NO CHANGE")
+                    write_log("HTML UNCHANGED")
 
                 errors = 0
 
@@ -250,7 +256,7 @@ try:
                 f"ERROR: {e}"
             )
 
-        print("Sleeping 30 seconds...")
+        print(f"Sleeping {SLEEP_SECONDS} seconds...")
 
         time.sleep(SLEEP_SECONDS)
 
