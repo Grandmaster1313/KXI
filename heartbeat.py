@@ -185,15 +185,30 @@ try:
 
                 html_file = Path("dashboard/index.html")
 
-                if html_file.exists():
+if html_file.exists():
 
-                    current_signature = sha256(
-                        html_file.read_bytes()
-                    ).hexdigest()
+    html = html_file.read_text(encoding="utf-8")
 
-                else:
+    filtered = []
 
-                    current_signature = ""
+    for line in html.splitlines():
+
+        if line.strip().startswith("Current Time"):
+            continue
+
+        if line.strip().startswith("Last Update"):
+            continue
+
+        filtered.append(line)
+
+    current_signature = sha256(
+        "\n".join(filtered).encode("utf-8")
+    ).hexdigest()
+
+else:
+
+    current_signature = ""
+    
 
                 if current_signature != last_signature:
 
