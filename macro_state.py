@@ -96,7 +96,7 @@ def check_bias_change(new_bias):
 # SAVE
 # ============================================================
 
-def save_current_bias(bias):
+def save_current_bias(bias, confidence):
 
     check_bias_change(bias)
 
@@ -106,7 +106,7 @@ def save_current_bias(bias):
     )
 
 
-    entry = f"{timestamp}|{bias}"
+    entry = f"{timestamp}|{bias}|{confidence}"
 
 
     history = load_previous_bias()

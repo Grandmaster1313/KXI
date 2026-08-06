@@ -77,7 +77,7 @@ if previous_bias is not None and previous_bias != bias:
 
 
 
-save_current_bias(bias)
+save_current_bias(bias, confidence)
 
 
 history = load_previous_bias()
@@ -86,16 +86,41 @@ macro_history = []
 
 for entry in history:
 
-    if "|" in entry:
+    parts = entry.split("|")
 
-        timestamp, status = entry.split("|", 1)
+    if len(parts) >= 3:
+
+        timestamp = parts[0]
+        status = parts[1]
+        confidence_value = parts[2]
+
+        time_only = timestamp.split()[1]
+
+        if "Bullish" in status:
+            symbol = "^"
+
+        elif "Bearish" in status:
+            symbol = "v"
+
+        else:
+            symbol = "="
+
+        macro_history.append(
+            f"{time_only:<10} {symbol} {status} ({confidence_value}%)"
+        )
+
+    elif len(parts) == 2:
+
+        # Compatibility with old history entries
+
+        timestamp = parts[0]
+        status = parts[1]
 
         time_only = timestamp.split()[1]
 
         macro_history.append(
             f"{time_only:<10} {status}"
         )
-
 
 current_time = datetime.now().strftime(
     "%H:%M:%S CST"
@@ -202,11 +227,7 @@ html = f"""
 
 
 <body>
-
-<div class="container">
-
-<pre>
-
+<div class="container"><pre>
 +============================================================================+
 | KXI COMMAND CENTER                                     CLIENT : LIVE        |
 +============================================================================+
@@ -225,14 +246,11 @@ Trading Week ............ {trading_week}
 {session_status}
 
 ===============================================================================
-
 MARKET SNAPSHOT
 
-Gold .............. {gold['price']:8.2f}
-DXY ............... {dxy['price']:8.2f}
+Gold .............. {gold['price']:8.2f}    WTI ............... {wti['price']:8.2f}
+DXY ............... {dxy['price']:8.2f}     VIX ............... {vix['price']:8.2f}
 US10Y ............. {us10y['price']:8.2f}
-WTI ............... {wti['price']:8.2f}
-VIX ............... {vix['price']:8.2f}
 
 ===============================================================================
 
@@ -247,9 +265,7 @@ Last Update .... {last_update}
 
 +============================================================================+
 
-</pre>
-
-</div>
+</pre></div>
 
 </body>
 
