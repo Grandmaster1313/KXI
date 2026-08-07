@@ -36,7 +36,7 @@ history = load_previous_bias()
 previous_bias = None
 
 if history:
-    previous_bias = history[0].split("|", 1)[1]
+    previous_bias = history[0].split("|")[1]
 
 
 if previous_bias is not None and previous_bias != bias:

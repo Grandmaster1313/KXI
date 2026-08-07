@@ -1,13 +1,66 @@
 import subprocess
 import time
+import os
 from datetime import datetime
 from pathlib import Path
 from hashlib import sha256
 
+def play_alert():
+
+    try:
+
+        import winsound
+
+        winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
+
+    except Exception as e:
+
+        print(f"Alert error: {e}")
+
 # ============================================================
 # KXI HEARTBEAT CONFIGURATION
 # ============================================================
+# ============================================================
+# SINGLE INSTANCE PROTECTION
+# ============================================================
 
+LOCK_FILE = Path("heartbeat.lock")
+
+
+def acquire_lock():
+
+    if LOCK_FILE.exists():
+
+        try:
+
+            pid = int(LOCK_FILE.read_text().strip())
+
+            os.kill(pid, 0)
+
+            print("=" * 60)
+            print("Heartbeat is already running.")
+            print(f"PID: {pid}")
+            print("=" * 60)
+
+            raise SystemExit
+
+        except OSError:
+            pass
+
+        except ValueError:
+            pass
+
+    LOCK_FILE.write_text(str(os.getpid()))
+
+
+def release_lock():
+
+    if LOCK_FILE.exists():
+
+        try:
+            LOCK_FILE.unlink()
+        except Exception:
+            pass
 PYTHON_EXE = r"C:\Users\herna\OneDrive\Documents\KXI\venv312\Scripts\python.exe"
 
 DASHBOARD_SCRIPT = "gold_dashboard.py"
@@ -153,7 +206,7 @@ updates = 0
 no_changes = 0
 errors = 0
 
-last_signature = None
+last_macro_state = None
 
 start_time = datetime.now()
 
@@ -162,6 +215,7 @@ cleanup_logs()
 print("=" * 60)
 print("KXI HEARTBEAT STARTED")
 print("=" * 60)
+acquire_lock()
 
 try:
 
@@ -170,7 +224,6 @@ try:
         cycles += 1
 
         try:
-
 
             result = subprocess.run(
                 [
@@ -183,56 +236,46 @@ try:
 
             if result.returncode == 0:
 
-                html_file = Path("dashboard/index.html")
+                state_file = Path("macro_bias_state.txt")
 
-if html_file.exists():
+                if state_file.exists():
 
-    html = html_file.read_text(encoding="utf-8")
+                    current_state = state_file.read_text(
+                        encoding="utf-8"
+                    ).strip()
 
-    filtered = []
+                    if last_macro_state is None:
 
-    for line in html.splitlines():
+                        print("Initial macro state loaded.")
 
-        if line.strip().startswith("Current Time"):
-            continue
+                        last_macro_state = current_state
+                        no_changes += 1
 
-        if line.strip().startswith("Last Update"):
-            continue
+                        write_log("INITIAL MACRO STATE")
 
-        filtered.append(line)
+                    elif current_state != last_macro_state:
 
-    current_signature = sha256(
-        "\n".join(filtered).encode("utf-8")
-    ).hexdigest()
+                        updates += 1
+                        last_macro_state = current_state
 
-else:
+                        print(
+                            f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S CST')}] "
+                            "MACRO STATE CHANGED"
+                        )
 
-    current_signature = ""
-    
+                        play_alert()
+                        auto_publish()
+                        write_log("MACRO STATE CHANGED")
 
-                if current_signature != last_signature:
+                    else:
 
-                    updates += 1
-
-                    last_signature = current_signature
-
-                    print(
-                        f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S CST')}] Dashboard HTML changed."
-                    )
-
-                    write_log("HTML UPDATED")
-
-                    auto_publish()
+                        no_changes += 1
+                        write_log("NO MACRO CHANGE")
 
                 else:
 
                     no_changes += 1
-
-                    print(
-                        f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S CST')}] HTML unchanged."
-                    )
-
-                    write_log("HTML UNCHANGED")
+                    write_log("macro_bias_state.txt NOT FOUND")
 
                 errors = 0
 
@@ -268,9 +311,7 @@ else:
 
             print(e)
 
-            write_log(
-                f"ERROR: {e}"
-            )
+            write_log(f"ERROR: {e}")
 
         print(f"Sleeping {SLEEP_SECONDS} seconds...")
 
@@ -287,5 +328,7 @@ except KeyboardInterrupt:
     print(f"Updates: {updates}")
     print(f"No Changes: {no_changes}")
     print(f"Errors: {errors}")
+
+    release_lock()
 
     print("=" * 60)
