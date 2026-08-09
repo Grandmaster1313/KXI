@@ -231,11 +231,8 @@ html = f"""
 +=============================================================================+
 | KXI COMMAND CENTER                                     CLIENT : LIVE        |
 +=============================================================================+
-
-MARKET CONDITIONS
-
-Macro Bias .............. {bias_text(bias)}
-Confidence .............. {confidence}%
+Macro Bias ........ {bias_text(bias)}
+Confidence ........ {confidence}%
 
 Recent Changes
 {chr(10).join(macro_history)}
@@ -249,11 +246,10 @@ Trading Week ............ {trading_week}
 MARKET SNAPSHOT
 
 Gold .............. {gold['price']:8.2f}    WTI ............... {wti['price']:8.2f}
-DXY ............... {dxy['price']:8.2f}     VIX ............... {vix['price']:8.2f}
+DXY ............... {dxy['price']:8.2f}    VIX ............... {vix['price']:8.2f}
 US10Y ............. {us10y['price']:8.2f}
 
 ===============================================================================
-
 SYSTEM STATUS
 
 System ..... OK
