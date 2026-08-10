@@ -235,7 +235,7 @@ Macro Bias ........ {bias_text(bias)}
 Confidence ........ {confidence}%
 
 Recent Changes
-{chr(10).join(macro_history)}
+{chr(10).join(macro_history[:4])}
 
 Trading Month ........... {trading_month}
 Trading Week ............ {trading_week}
