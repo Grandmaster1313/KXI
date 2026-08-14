@@ -1,122 +1,131 @@
-def get_macro_bias(gold, dxy, us10y, wti, vix):
+def scaled_score(change_pct, levels, weights, inverse=False):
+    """
+    change_pct : daily percentage change
+    levels     : threshold percentages
+    weights    : score values
+    inverse    : True for DXY / US10Y / VIX
+    """
 
-    # -------------------------
-    # Prevent crashes if any feed is unavailable
-    # -------------------------
-
-    if gold is None:
-        gold = {"change": 0}
-
-    if dxy is None:
-        dxy = {"change": 0}
-
-    if us10y is None:
-        us10y = {"change": 0}
-
-    if wti is None:
-        wti = {"change": 0}
-
-    if vix is None:
-        vix = {"change": 0}
-
+    c = abs(change_pct)
     score = 0
 
+    for level, weight in zip(levels, weights):
+        if c >= level:
+            score = weight
+
+    if change_pct < 0:
+        direction = -1
+    elif change_pct > 0:
+        direction = 1
+    else:
+        direction = 0
+
+    score *= direction
+
+    if inverse:
+        score *= -1
+
+    return score
+
+
+def get_macro_bias(gold, dxy, us10y, wti, vix):
+
+    gold = gold or {"change_pct": 0}
+    dxy = dxy or {"change_pct": 0}
+    us10y = us10y or {"change_pct": 0}
+    wti = wti or {"change_pct": 0}
+    vix = vix or {"change_pct": 0}
+
     print()
-    print("=" * 50)
-    print("MACRO BIAS DIAGNOSTICS")
-    print("=" * 50)
+    print("=" * 60)
+    print("MACRO ENGINE V2")
+    print("=" * 60)
 
-    # -------------------------
-    # DXY (30%)
-    # -------------------------
+    GOLD_LEVELS = [0.10, 0.25, 0.40, 0.60, 0.80]
+    GOLD_WEIGHTS = [2, 4, 6, 8, 10]
 
-    if dxy["change"] > 0:
-        dxy_score = -30
-    else:
-        dxy_score = 30
+    DXY_LEVELS = [0.05, 0.15, 0.30, 0.50]
+    DXY_WEIGHTS = [8, 15, 25, 35]
 
-    score += dxy_score
+    US10Y_LEVELS = [0.05, 0.15, 0.30, 0.50]
+    US10Y_WEIGHTS = [5, 10, 18, 25]
 
-    print(
-        f"DXY    Change: {dxy['change']:>7.2f}   "
-        f"Contribution: {dxy_score:+d}"
+    WTI_LEVELS = [0.10, 0.30, 0.60, 1.00]
+    WTI_WEIGHTS = [3, 6, 10, 15]
+
+    VIX_LEVELS = [0.20, 0.50, 1.00]
+    VIX_WEIGHTS = [4, 8, 15]
+
+    gold_score = scaled_score(
+        gold.get("change_pct", 0),
+        GOLD_LEVELS,
+        GOLD_WEIGHTS,
+        inverse=False,
     )
 
-    # -------------------------
-    # US10Y (20%)
-    # -------------------------
-
-    if us10y["change"] > 0:
-        us10y_score = -20
-    else:
-        us10y_score = 20
-
-    score += us10y_score
-
-    print(
-        f"US10Y  Change: {us10y['change']:>7.2f}   "
-        f"Contribution: {us10y_score:+d}"
+    dxy_score = scaled_score(
+        dxy.get("change_pct", 0),
+        DXY_LEVELS,
+        DXY_WEIGHTS,
+        inverse=True,
     )
 
-    # -------------------------
-    # WTI (10%)   <-- APPROVED CHANGE
-    # -------------------------
-
-    if wti["change"] > 0:
-        wti_score = 10
-    else:
-        wti_score = -10
-
-    score += wti_score
-
-    print(
-        f"WTI    Change: {wti['change']:>7.2f}   "
-        f"Contribution: {wti_score:+d}"
+    us10y_score = scaled_score(
+        us10y.get("change_pct", 0),
+        US10Y_LEVELS,
+        US10Y_WEIGHTS,
+        inverse=True,
     )
 
-    # -------------------------
-    # VIX (10%)
-    # -------------------------
-
-    if vix["change"] > 0:
-        vix_score = 10
-    else:
-        vix_score = -10
-
-    score += vix_score
-
-    print(
-        f"VIX    Change: {vix['change']:>7.2f}   "
-        f"Contribution: {vix_score:+d}"
+    # WTI DOWN = bearish
+    wti_score = scaled_score(
+        wti.get("change_pct", 0),
+        WTI_LEVELS,
+        WTI_WEIGHTS,
+        inverse=False,
     )
 
-    print("-" * 50)
-    print(f"TOTAL SCORE : {score:+d}")
+    # VIX UP = bearish
+    vix_score = scaled_score(
+        vix.get("change_pct", 0),
+        VIX_LEVELS,
+        VIX_WEIGHTS,
+        inverse=True,
+    )
 
-    # -------------------------
-    # Final Classification
-    # -------------------------
+    score = (
+        gold_score
+        + dxy_score
+        + us10y_score
+        + wti_score
+        + vix_score
+    )
+
+    print(f"Gold  : {gold_score:+3}")
+    print(f"DXY   : {dxy_score:+3}")
+    print(f"US10Y : {us10y_score:+3}")
+    print(f"WTI   : {wti_score:+3}")
+    print(f"VIX   : {vix_score:+3}")
+
+    print("-" * 60)
+    print(f"TOTAL : {score:+3}")
 
     if score >= 60:
         bias = "Strong Bullish"
-
     elif score >= 20:
         bias = "Bullish"
-
     elif score <= -60:
         bias = "Strong Bearish"
-
     elif score <= -20:
         bias = "Bearish"
-
     else:
         bias = "Neutral"
 
-    confidence = abs(score)
+    confidence = min(abs(score), 100)
 
-    print(f"BIAS        : {bias}")
-    print(f"CONFIDENCE  : {confidence}%")
-    print("=" * 50)
+    print(f"BIAS       : {bias}")
+    print(f"CONFIDENCE : {confidence}%")
+    print("=" * 60)
     print()
 
     return bias, confidence
